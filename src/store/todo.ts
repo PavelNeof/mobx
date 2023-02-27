@@ -9,12 +9,10 @@ class Todo {
         {id: v1(), title: 'wake up', completed: false},
     ];
 
+    img = ''
+
     constructor() {
         makeAutoObservable(this)
-    }
-
-    addTodo(todo: {id: string, title: string, completed: boolean}) {
-        this.todos.push(todo)
     }
 
     add(title:string){
@@ -36,6 +34,12 @@ class Todo {
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(json => this.todos = [...this.todos, ...json])
+    }
+
+    getCat(){
+        fetch('https://aws.random.cat/meow')
+            .then(response => response.json())
+            .then(json => this.img = json.file)
     }
 
 }

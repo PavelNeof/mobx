@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {observer} from "mobx-react-lite";
 import todo from "./store/todo";
+import LoadableImage from "./LoadableImage/LoadableImage";
 
 const Todo = () => {
 
@@ -27,6 +28,8 @@ const Todo = () => {
             )}
             <input value={title} onChange={onChangeHandler}/>
             <button onClick={onclickHandler}>add</button>
+            <div><button onClick={()=>todo.getCat()}>get cat</button></div>
+            {todo.img && <LoadableImage src={todo.img}/> }
         </div>
     );
 };

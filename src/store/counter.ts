@@ -4,6 +4,7 @@ class Counter {
 
     count:number = 0
     timer:number = 10
+    sum:number | null = null
 
     constructor() {
         makeAutoObservable(this)
@@ -18,6 +19,10 @@ class Counter {
 
     get total() {
         return `count + timer = ` + this.count + this.timer
+    }
+
+    allSum() {
+        this.sum = this.count + this.timer
     }
 }
 
