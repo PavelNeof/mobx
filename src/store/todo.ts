@@ -37,6 +37,7 @@ class Todo {
     }
 
     getCat(){
+        this.img = ''
         fetch('https://aws.random.cat/meow')
             .then(response => response.json())
             .then(json => this.img = json.file)

@@ -21,7 +21,7 @@ const LoadableImage = (props: ILoadableImage) => {
 
     return (
         <div className={isLoaded ? `${'containerPhoto'} ${'containerPhotoLoaded'}`: 'containerPhoto' }>
-            <img ref={imageRef} src={src} alt={alt} className={isLoaded ? `${'image'} ${'imageLoaded'}`:'image' }/>
+            <img loading="lazy" ref={imageRef} src={src} alt={alt} className={isLoaded ? `${'image'} ${'imageLoaded'}`:'image' }/>
         </div>
     );
 };
