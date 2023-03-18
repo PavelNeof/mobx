@@ -11,12 +11,14 @@ class Todo {
 
     img = ''
 
+    state = 'pending'
+
     constructor() {
         makeAutoObservable(this)
     }
 
-    add(title:string){
-        const todo = {id: v1(), title, completed:false}
+    add(title: string) {
+        const todo = {id: v1(), title, completed: false}
         this.todos = [...this.todos, todo]
     }
 
@@ -24,23 +26,27 @@ class Todo {
         this.todos = this.todos.filter(el => el.id !== id)
     }
 
-    completeTodo(id:string){
+    completeTodo(id: string) {
         console.log('change checkbox')
-        this.todos = this.todos.map(el=> el.id === id ? {...el, completed: !el.completed} : el)
+        this.todos = this.todos.map(el => el.id === id ? {...el, completed: !el.completed} : el)
     }
 
-    fetchTodos(){
+    fetchTodos() {
         console.log('fetch')
         fetch('https://jsonplaceholder.typicode.com/todos')
             .then(response => response.json())
             .then(json => this.todos = [...this.todos, ...json])
     }
 
-    getCat(){
+    async getCat() {
         this.img = ''
-        fetch('https://aws.random.cat/meow')
-            .then(response => response.json())
-            .then(json => this.img = json.file)
+        try {
+            const res = await fetch('https://aws.random.cat/meow')
+            const response = await res.json()
+            this.img = response.file;
+        } catch (e:any) {
+            this.state = e;
+        }
     }
 
 }

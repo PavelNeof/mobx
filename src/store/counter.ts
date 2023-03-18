@@ -24,6 +24,9 @@ class Counter {
     allSum() {
         this.sum = this.count + this.timer
     }
+
+
+
 }
 
 export default new Counter();
